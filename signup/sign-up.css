@@ -1,0 +1,163 @@
+/* --- 1. FONTS & GLOBAL SETTINGS --- */
+/* Import the fonts so 'Cinzel' works */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lato:wght@400;700&display=swap');
+
+/* This rule is crucial: it stops padding from breaking your layout */
+* {
+    box-sizing: border-box;
+}
+
+/* --- 2. BODY BACKGROUND --- */
+body {
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1550948537-130a1ce83314?q=80&w=2072&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: 'Lato', sans-serif; /* Sets a default clean font for the page */
+}
+
+/* --- 3. NAVIGATION BAR (Untouched Logic) --- */
+nav {
+    width: 100%;
+    background-color: #000000; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    padding: 0 20px; 
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: flex-start;
+    list-style: none;
+    padding: 10px 20px;
+    margin: 0;
+}
+
+nav ul li img {
+    height: 50px;
+    width: auto;
+    display: block;
+}
+
+/* Logo Text Alignment */
+#VintageV {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+#VintageV p {
+    margin: 0;
+    color: aliceblue;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: larger;
+}
+
+/* --- 4. SIGN UP FORM SECTION --- */
+
+/* The Container (Centers the box) */
+.form-container {
+    height: 90vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    padding-top: 60px;
+}
+
+/* The White Card */
+.form-box {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.form-box:hover {
+    transform: translateY(-5px);
+}
+
+/* Headings & Text */
+.form-box h2 {
+    margin-bottom: 10px;
+    color: #333;
+    font-family: 'Cinzel', serif; /* Uses the imported vintage font */
+}
+
+.form-box p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #444;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #d4af37;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+/* Sign Up Button */
+.signup-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.signup-btn:hover {
+    background-color: #d4af37;
+    color: #000;
+    transform: scale(1.02);
+}
+
+/* Bottom Divider */
+.switch-link {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    font-size: 0.9rem;
+}
+
+.switch-link a {
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: bold;
+}

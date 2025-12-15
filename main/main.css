@@ -1,0 +1,133 @@
+/* 1. Global Reset: Removes default browser spacing */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4; /* Light grey background for the page */
+}
+
+/* 2. The Navbar Container */
+nav {
+    background-color: #000000; /* Dark Blue/Grey Background */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow at bottom */
+    padding: 0 20px; /* Horizontal padding */
+}
+
+/* 3. The Inner Wrapper (The <div> inside <nav>) */
+/* This is crucial for your specific HTML structure */
+nav > div {
+    width: 100%; /* Limits width on large screens */
+    margin: 0 auto;    /* Centers the content */
+    display: flex;     /* Enables Flexbox layout */
+    justify-content: space-between; /* Pushes Logo left, Links right */
+    align-items: center; /* Vertically aligns Logo and Links */
+    height: 70px;      /* Fixed height for the navbar */
+}
+
+/* 4. Logo Styling */
+nav img {
+    height: 40px;      /* Restricts logo height so it fits */
+    width: auto;       /* Maintains aspect ratio */
+    cursor: pointer;
+}
+
+/* 5. The List Container (<ul>) */
+nav ul {
+    list-style: none;  /* Removes bullet points */
+    margin: 0;
+    padding: 0;
+    display: flex;     /* aligns <li> items in a row */
+    gap: 20px;         /* Space between Login and Sign-up */
+}
+
+/* 6. Link Styling (<a>) */
+nav a {
+    text-decoration: none; /* Removes underline */
+    color: rgb(255, 255, 255);        /* White-ish text */
+    font-weight: 500;
+    font-size: 1rem;    /* clickable area padding */
+    border-radius: 4px;  /* Rounded corners */
+    transition: all 0.3s ease;
+}
+
+/* Hover Effects */
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Light fade on hover */
+    color: #e67e22;
+}
+
+/* Optional: Special styling for the 'Sign-up' button to make it pop */
+nav li:last-child a {
+    color: rgb(255, 255, 255);
+}
+/* Target the Sign-up button (the very last item in the list) */
+nav ul li:last-child {
+    border-left: 1px solid rgba(255, 255, 255, 0.3); /* A 30% visible white line */
+    padding-left: 20px; /* Moves the "Sign-up" text away from the line */
+    margin-left: 3px;  /* Moves the line away from the "Login" text */
+    padding-right: 20px ;
+}
+.usernav:hover{
+    color: #e38b3d;
+    border-left: #f4f4f4;
+}
+.shop-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.shop-box {
+  flex: 1;
+  height: 500px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.shop-box:hover {
+  transform: scale(1.03);
+}
+
+.shop-box span {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+/* Image backgrounds (similar style to your screenshot) */
+.men {
+  background-image: url("https://images.unsplash.com/photo-1516826957135-700dedea698c");
+}
+
+.women {
+  background-image: url("https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e");
+}
+
+.kids {
+  background-image: url("https://images.unsplash.com/photo-1607453998774-d533f65dac99");
+}
+
+.accessories {
+  background-image: url("https://images.unsplash.com/photo-1523275335684-37898b6baf30");
+}
+.switch-link {
+    /* 1. The Line */
+    border-top: 1px solid #ddd; /* #ddd is a very light grey */
+    
+    /* 2. Spacing around the line */
+    margin-top: 20px;  /* Pushes the line down away from the Sign Up button */
+    padding-top: 20px; /* Pushes the text down away from the line */
+    
+    /* Optional: Ensure text is centered if it isn't already */
+    text-align: center;
+}

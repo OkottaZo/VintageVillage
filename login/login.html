@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Vintage Village</title>
+    <link rel="icon" type="image/png" href="Favicon2023-728352333 (1).jpg">
+    
+    <link rel="stylesheet" href="sign-up.css"> 
+</head>
+<body>
+    
+    <nav>
+        <div>
+            <ul>
+                <li>
+                    <a href="main.html">
+                        <img src="../Images/Favicon2023-728352333 (1).jpg" alt="Vintage Village">
+                    </a>
+                </li>
+                <li id="VintageV">
+                    <p>Vintage Village</p>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="form-container">
+        <div class="form-box">
+            <h2>Welcome Back</h2>
+            <p>Login to continue your journey.</p>
+            
+            <form action="login.php" method="POST">
+                <div class="input-group">
+                    <label>Username or Email</label>
+                    <input type="text" name="username" required>
+                </div>
+                
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" name="password" required>
+                </div>
+                
+                <button type="submit" class="signup-btn">Login</button>
+            </form>
+            
+            <p class="switch-link">
+                New here? <a href="sign-up.html">Create an account</a>
+            </p>
+        </div>
+    </div>
+    
+</body>
+</html>
