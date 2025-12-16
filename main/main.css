@@ -1,5 +1,6 @@
 /* 1. Global Reset: Removes default browser spacing */
 body {
+    
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -8,6 +9,7 @@ body {
 
 /* 2. The Navbar Container */
 nav {
+
     background-color: #000000; /* Dark Blue/Grey Background */
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow at bottom */
     padding: 0 20px; /* Horizontal padding */
@@ -36,12 +38,14 @@ nav ul {
     list-style: none;  /* Removes bullet points */
     margin: 0;
     padding: 0;
+    
     display: flex;     /* aligns <li> items in a row */
     gap: 20px;         /* Space between Login and Sign-up */
 }
 
 /* 6. Link Styling (<a>) */
 nav a {
+    
     text-decoration: none; /* Removes underline */
     color: rgb(255, 255, 255);        /* White-ish text */
     font-weight: 500;
