@@ -1,0 +1,573 @@
+/* Complete Add Product Page Styles - All in one file */
+
+/* 1. Global Reset: Removes default browser spacing */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4; /* Light grey background for the page */
+}
+
+/* 2. The Navbar Container */
+nav {
+    background-color: #000000; /* Dark Blue/Grey Background */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow at bottom */
+    padding: 0 20px; /* Horizontal padding */
+}
+
+/* 3. The Inner Wrapper (The <div> inside <nav>) */
+nav > div {
+    max-width: 1400px; /* Limits width on large screens */
+    margin: 0 auto;    /* Centers the content */
+    display: flex;     /* Enables Flexbox layout */
+    justify-content: space-between; /* Pushes Logo left, Links right */
+    align-items: center; /* Vertically aligns Logo and Links */
+    height: 70px;      /* Fixed height for the navbar */
+}
+
+/* 4. Logo Styling */
+nav img {
+    height: 40px;      /* Restricts logo height so it fits */
+    width: auto;       /* Maintains aspect ratio */
+    cursor: pointer;
+}
+
+/* 5. The List Container (<ul>) */
+nav ul {
+    list-style: none;  /* Removes bullet points */
+    margin: 0;
+    padding: 0;
+    display: flex;     /* aligns <li> items in a row */
+    gap: 20px;         /* Space between Login and Sign-up */
+}
+
+/* 6. Link Styling (<a>) */
+nav a {
+    text-decoration: none; /* Removes underline */
+    color: rgb(255, 255, 255);        /* White-ish text */
+    font-weight: 500;
+    font-size: 1rem;    /* clickable area padding */
+    border-radius: 4px;  /* Rounded corners */
+    transition: all 0.3s ease;
+}
+
+/* Hover Effects */
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Light fade on hover */
+    color: #e67e22;
+}
+
+/* Optional: Special styling for the 'Sign-up' button to make it pop */
+nav li:last-child a {
+    color: rgb(255, 255, 255);
+}
+
+/* Target the Sign-up button (the very last item in the list) */
+nav ul li:last-child {
+    border-left: 1px solid rgba(255, 255, 255, 0.3); /* A 30% visible white line */
+    padding-left: 20px; /* Moves the "Sign-up" text away from the line */
+    margin-left: 3px;  /* Moves the line away from the "Login" text */
+    padding-right: 20px ;
+}
+
+/* 8. Add Product Button - Red */
+.add-product-btn {
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.add-product-btn:hover {
+    background-color: #ff2222;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 68, 68, 0.3);
+}
+
+/* 9. Responsive Adjustments for Navbar */
+@media (max-width: 992px) {
+    nav > div {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px 0;
+    }
+    
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 10px 0;
+    }
+}
+
+/* Add Product Form Styles */
+.add-product-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    min-height: calc(100vh - 200px);
+}
+
+.form-wrapper {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    padding: 40px;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.form-header h1 {
+    font-size: 2.2rem;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.form-header p {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.form-section {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eee;
+}
+
+.form-section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.form-section h2 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="file"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #e67e22;
+    box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.1);
+}
+
+.form-group input[type="file"] {
+    padding: 10px 15px;
+    background-color: #f9f9f9;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.checkbox-group-horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: normal;
+    color: #555;
+    transition: color 0.3s;
+}
+
+.checkbox-label:hover {
+    color: #333;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #e67e22;
+}
+
+.help-text {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.85rem;
+    color: #888;
+    font-style: italic;
+}
+
+.image-preview {
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    margin-top: 20px;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fafafa;
+    transition: border-color 0.3s;
+}
+
+.image-preview:hover {
+    border-color: #e67e22;
+}
+
+.image-preview p {
+    color: #999;
+    margin: 0;
+}
+
+.preview-item {
+    display: inline-block;
+    margin: 0 10px;
+    text-align: center;
+}
+
+.preview-item img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.preview-item p {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+.cancel-btn,
+.submit-btn {
+    padding: 14px 30px;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.cancel-btn {
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.cancel-btn:hover {
+    background-color: #eaeaea;
+}
+
+.submit-btn {
+    background-color: #e67e22;
+    color: white;
+}
+
+.submit-btn:hover {
+    background-color: #d35400;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(230, 126, 34, 0.3);
+}
+
+/* Required field indicator */
+.form-group label[for*="product-name"]::after,
+.form-group label[for*="product-description"]::after,
+.form-group label[for*="category"]::after,
+.form-group label[for*="price"]::after,
+.form-group label[for*="quantity"]::after,
+.form-group label[for*="main-image"]::after {
+    content: " *";
+    color: #ff4444;
+}
+
+/* Footer Styles */
+.main-footer {
+    background-color: #000;
+    color: white;
+    margin-top: 60px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-section h3 {
+    font-size: 1.1rem;
+    color: white;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #e67e22;
+}
+
+.contact-info p {
+    color: #ccc;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.newsletter p {
+    color: #ccc;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+.newsletter-form input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.3);
+}
+
+.newsletter-form button {
+    padding: 12px 25px;
+    background-color: #e67e22;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.newsletter-form button:hover {
+    background-color: #d35400;
+}
+
+.footer-bottom {
+    background-color: #111;
+    padding: 25px 20px;
+    border-top: 1px solid #333;
+}
+
+.footer-bottom-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.copyright p {
+    color: #999;
+    margin: 0;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: #999;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #e67e22;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .footer-section {
+        width: 100%;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+    
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-links {
+        justify-content: center;
+    }
+}
+
+/* Responsive Form Adjustments */
+@media (max-width: 768px) {
+    .form-wrapper {
+        padding: 25px;
+    }
+    
+    .form-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .cancel-btn,
+    .submit-btn {
+        width: 100%;
+    }
+    
+    .checkbox-group,
+    .checkbox-group-horizontal {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .add-product-container {
+        padding: 20px 10px;
+    }
+    
+    .form-wrapper {
+        padding: 20px 15px;
+    }
+    
+    .form-header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .form-header p {
+        font-size: 1rem;
+    }
+    
+    nav > div {
+        flex-direction: column;
+        height: auto;
+        padding: 15px 0;
+    }
+    
+    nav ul {
+        margin-top: 15px;
+        width: 100%;
+        justify-content: center;
+    }
+}

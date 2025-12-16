@@ -3,10 +3,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="addproduct.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="addproduct.css"> <!-- Only your CSS file -->
+    <title>Add Product - Vintage Village</title>
 </head>
 <body>
-    
+    <nav>
+        <div>
+            <a href="../main/main.html">
+                <img src="../Images/Favicon2023-728352333 (1).jpg" alt="LbaL.com">
+            </a>
+            <ul>
+                <li>
+                    <a href="">Women</a>
+                </li>
+                <li>
+                    <a href="">Men</a>
+                </li>
+                <li>
+                    <a href="">Kids</a>
+                </li>
+                <li>
+                    <a href="">Accessories</a>
+                </li>
+                <li>
+                    <a class="usernav" id="loginbutt" href="../login/login.html">Login</a>
+                </li>
+                <li>
+                    <a class="usernav" href="../signup/sign-up.html">Sign-up</a>
+                </li>
+            </ul>
+            <!-- Return to Shop Button -->
+            <button class="add-product-btn" onclick="window.location.href='../shop/shop.html'">
+                Back to Shop
+            </button>
+        </div>
+    </nav>
+
+    <!-- Add Product Form Container -->
+    <div class="add-product-container">
+        <div class="form-wrapper">
+            <div class="form-header">
+                <h1>Add New Product</h1>
+                <p>Fill in the details below to add a new product to your store</p>
+            </div>
+
+            <form id="add-product-form" class="product-form">
+                <!-- Basic Information Section -->
+                <div class="form-section">
+                    <h2>Basic Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="product-name">Product Name *</label>
+                        <input type="text" id="product-name" name="product-name" placeholder="e.g., Vintage Guns N Roses T-shirt" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-description">Product Description *</label>
+                        <textarea id="product-description" name="product-description" rows="4" placeholder="Describe your product in detail..." required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="category">Category *</label>
+                            <select id="category" name="category" required>
+                                <option value="">Select a category</option>
+                                <option value="men">Men's Clothing</option>
+                                <option value="women">Women's Clothing</option>
+                                <option value="kids">Kids' Clothing</option>
+                                <option value="accessories">Accessories</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subcategory">Subcategory</label>
+                            <select id="subcategory" name="subcategory">
+                                <option value="">Select a subcategory</option>
+                                <option value="shirts">Shirts</option>
+                                <option value="t-shirts">T-Shirts</option>
+                                <option value="jeans">Jeans</option>
+                                <option value="jackets">Jackets</option>
+                                <option value="dresses">Dresses</option>
+                                <option value="shoes">Shoes</option>
+                                <option value="accessories">Accessories</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Section -->
+                <div class="form-section">
+                    <h2>Pricing & Inventory</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="price">Price ($) *</label>
+                            <input type="number" id="price" name="price" min="0" step="0.01" placeholder="300.00" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="quantity">Quantity in Stock *</label>
+                            <input type="number" id="quantity" name="quantity" min="0" placeholder="100" required>
+                        </div>
+                    </div>
+
+                <!-- Product Details Section -->
+                <div class="form-section">
+                    <h2>Product Details</h2>
+                    
+                    <div class="form-group">
+                        <label for="brand">Brand</label>
+                        <input type="text" id="brand" name="brand" placeholder="e.g., Vintage Village">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Sizes Available</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="sizes" value="XS"> XS
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="sizes" value="S"> S
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="sizes" value="M"> M
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="sizes" value="L"> L
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="sizes" value="XL"> XL
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="sizes" value="XXL"> XXL
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Colors Available</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="colors" value="black"> Black
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="colors" value="white"> White
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="colors" value="blue"> Blue
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="colors" value="red"> Red
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="colors" value="green"> Green
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="condition">Product Condition</label>
+                        <select id="condition" name="condition">
+                            <option value="new">New</option>
+                            <option value="like-new">Like New</option>
+                            <option value="good">Good</option>
+                            <option value="fair">Fair</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Image Upload Section -->
+                <div class="form-section">
+                    <h2>Product Images</h2>
+                    
+                    <div class="form-group">
+                        <label for="main-image">Main Product Image *</label>
+                        <input type="file" id="main-image" name="main-image" accept="image/*" required>
+                        <small class="help-text">Recommended size: 800x800px or larger</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="additional-images">Additional Images</label>
+                        <input type="file" id="additional-images" name="additional-images" accept="image/*" multiple>
+                        <small class="help-text">You can upload up to 5 additional images</small>
+                    </div>
+                    
+                    <div class="image-preview" id="image-preview">
+                        <p>No images selected</p>
+                    </div>
+                </div>
+
+                <!-- Special Features -->
+                <div class="form-section">
+                    <h2>Special Features</h2>
+                    
+                    <div class="checkbox-group-horizontal">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="limited-edition" value="true"> Limited Edition
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="on-sale" value="true"> On Sale
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="featured" value="true"> Featured Product
+                        </label>
+                    </div>
+                    
+                    <div class="form-group" id="discount-field" style="display: none;">
+                        <label for="discount">Discount Percentage</label>
+                        <input type="number" id="discount" name="discount" min="0" max="100" placeholder="e.g., 20">
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" onclick="window.location.href='../shop/shop.html'">Cancel</button>
+                    <button type="submit" class="submit-btn">Add Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section categories">
+                <h3>SHOP CATEGORIES</h3>
+                <ul>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Kids</a></li>
+                    <li><a href="#">Accessories</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section contact">
+                <h3>CONTACT US</h3>
+                <div class="contact-info">
+                    <p>Email: support@vintagevillage.com</p>
+                    <p>Phone: +1 (800) 123-4567</p>
+                </div>
+            </div>
+            
+            <div class="footer-section newsletter">
+                <h3>STAY UPDATED</h3>
+                <p>Subscribe to our newsletter for latest trends and deals</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <div class="copyright">
+                    <p>© 2025 Vintage Village. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="../contact-us/contact.html">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+  <script src="../productmanager/productmanager.js"></script>
 </body>
 </html>
