@@ -133,6 +133,36 @@
                         <button class="buy-now-btn" id="buy-now">Buy Now</button>
                     </div>
                 </div>
+                <!-- Comment / Review Section -->
+<div class="comment-section">
+    <h2>Customer Reviews</h2>
+
+    <!-- Add Comment -->
+    <div class="add-comment">
+        <h3>Leave a Review</h3>
+        <form id="comment-form">
+            <input type="text" id="comment-name" placeholder="Your name" required>
+
+            <select id="comment-rating" required>
+                <option value="">Rating</option>
+                <option value="5">★★★★★ (5)</option>
+                <option value="4">★★★★☆ (4)</option>
+                <option value="3">★★★☆☆ (3)</option>
+                <option value="2">★★☆☆☆ (2)</option>
+                <option value="1">★☆☆☆☆ (1)</option>
+            </select>
+
+            <textarea id="comment-text" placeholder="Write your review..." required></textarea>
+
+            <button type="submit">Post Review</button>
+        </form>
+    </div>
+
+    <!-- Comments List -->
+    <div class="comments-list" id="comments-list">
+        <!-- Comments will be added dynamically -->
+    </div>
+</div>
 
                 <!-- Additional Info -->
                 <div class="additional-info">
@@ -215,5 +245,6 @@
     </footer>
 
     <script src="product.js"></script> <!-- In same folder -->
+    <script src="productcomment.js"></script>
 </body>
 </html>

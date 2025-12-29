@@ -747,3 +747,76 @@ nav ul li:last-child {
         gap: 15px;
     }
 }
+/* Comment Section */
+.comment-section {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #e5e5e5;
+}
+
+.comment-section h2 {
+    font-size: 26px;
+    margin-bottom: 25px;
+}
+
+.add-comment {
+    margin-bottom: 40px;
+}
+
+.add-comment h3 {
+    margin-bottom: 15px;
+}
+
+#comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 500px;
+}
+
+#comment-form input,
+#comment-form select,
+#comment-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+#comment-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+#comment-form button {
+    width: fit-content;
+    padding: 10px 20px;
+    background: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#comment-form button:hover {
+    opacity: 0.8;
+}
+
+/* Individual Comment */
+.comment {
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.comment .comment-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.comment .rating {
+    color: #f5a623;
+}
+
+.comment p {
+    margin-top: 8px;
+    font-size: 14px;
+}
