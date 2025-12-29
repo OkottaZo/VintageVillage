@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="shop.css">
-    <title>Document</title>
+    <title>Vintage Village Shop</title>
 </head>
 <body>
     <nav>
         <div>
             <a href="../main/main.html">
-                <img src="../Images/Favicon2023-728352333 (1).jpg" alt="LbaL.com">
+                <img src="../Images/Favicon2023-728352333 (1).jpg" alt="Vintage Village">
             </a>
             <ul>
                 <li>
@@ -33,14 +33,11 @@
                 </li>
             </ul>
             <!-- Red Add Product Button -->
-        <button class="add-product-btn" onclick="window.location.href='../addproduct/addproduct.html'">
-            Add Product
-                </button>
+            <button class="add-product-btn" onclick="window.location.href='../addproduct/addproduct.html'">
+                Add Product
+            </button>
         </div>
-        
-
     </nav>
-  
 
     <!-- Main Container -->
     <div class="container">
@@ -129,9 +126,9 @@
 
             <div class="products">
                 <!-- Product 1 -->
-                <div class="product-card">
+                <div class="product-card" data-id="1">
                     <div class="product-image">
-                        <img src="../Images/Guns n Roses shirt.png" alt="Vintage T-shirt">
+                        <img src="../Images/Guns n Roses shirt.png" alt="Guns N Roses T-shirt">
                         <div class="limited-badge">Limited</div>
                     </div>
                     <div class="product-info">
@@ -144,9 +141,9 @@
                 </div>
 
                 <!-- Product 2 -->
-                <div class="product-card">
+                <div class="product-card" data-id="2">
                     <div class="product-image">
-                        <img src="../Images/nirvana shirt.png" alt="Vintage T-shirt">
+                        <img src="../Images/nirvana shirt.png" alt="Nirvana T-shirt">
                         <div class="limited-badge">Limited</div>
                     </div>
                     <div class="product-info">
@@ -158,6 +155,7 @@
                     </div>
                 </div>
 
+                <!-- Dynamic products will be added here by JavaScript -->
             </div>
         </main>
     </div>
@@ -235,6 +233,6 @@
             });
         });
     </script>
- <script src="../productmanager/productmanager.js"></script>
+    <script src="../productmanager/productmanager.js"></script>
 </body>
 </html>

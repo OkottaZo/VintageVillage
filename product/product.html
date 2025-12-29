@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="product.css"> <!-- In same folder -->
+    <title>Product Details - Vintage Village</title>
+</head>
+<body>
+    <nav>
+        <div>
+            <a href="../main/main.html">
+                <img src="../Images/Favicon2023-728352333 (1).jpg" alt="Vintage Village">
+            </a>
+            <ul>
+                <li>
+                    <a href="">Women</a>
+                </li>
+                <li>
+                    <a href="">Men</a>
+                </li>
+                <li>
+                    <a href="">Kids</a>
+                </li>
+                <li>
+                    <a href="">Accessories</a>
+                </li>
+                <li>
+                    <a class="usernav" id="loginbutt" href="../login/login.html">Login</a>
+                </li>
+                <li>
+                    <a class="usernav" href="../signup/sign-up.html">Sign-up</a>
+                </li>
+            </ul>
+            <!-- Back to Shop Button -->
+            <button class="add-product-btn" onclick="window.location.href='../shop/shop.html'">
+                Back to Shop
+            </button>
+        </div>
+    </nav>
+
+    <!-- Product Detail Container -->
+    <div class="product-detail-container">
+        <div class="breadcrumb">
+            <a href="../shop/shop.html">Shop</a> > 
+            <span id="product-category">Men's Clothing</span> > 
+            <span id="product-name-breadcrumb">Product Details</span>
+        </div>
+
+        <div class="product-main">
+            <!-- Product Images -->
+            <div class="product-images">
+                <div class="main-image">
+                    <img id="product-main-image" src="" alt="Product Image">
+                </div>
+                <div class="image-thumbnails">
+                    <!-- Thumbnails will be added dynamically -->
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-info">
+                <div class="product-header">
+                    <div class="product-brand" id="product-brand">Vintage Village</div>
+                    <h1 id="product-title">Product Name</h1>
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="review-count">(24 reviews)</span>
+                    </div>
+                </div>
+
+                <div class="product-pricing">
+                    <div class="current-price" id="product-price">$300.00</div>
+                    <div class="availability">
+                        <span class="in-stock" id="stock-status">In Stock</span>
+                        <span class="stock-count" id="stock-count">100+ items available</span>
+                    </div>
+                </div>
+
+                <div class="product-description">
+                    <h3>Description</h3>
+                    <p id="product-description-text">Product description goes here...</p>
+                </div>
+
+                <div class="product-details">
+                    <h3>Product Details</h3>
+                    <ul>
+                        <li><strong>Category:</strong> <span id="detail-category">Men's Clothing</span></li>
+                        <li><strong>Condition:</strong> <span id="detail-condition">New</span></li>
+                        <li><strong>Material:</strong> <span id="detail-material">100% Cotton</span></li>
+                        <li><strong>Care:</strong> <span id="detail-care">Machine wash cold</span></li>
+                    </ul>
+                </div>
+
+                <!-- Size Selection -->
+                <div class="size-selection">
+                    <h3>Select Size</h3>
+                    <div class="size-options">
+                        <button class="size-btn">XS</button>
+                        <button class="size-btn active">S</button>
+                        <button class="size-btn">M</button>
+                        <button class="size-btn">L</button>
+                        <button class="size-btn">XL</button>
+                        <button class="size-btn">XXL</button>
+                    </div>
+                </div>
+
+                <!-- Color Selection -->
+                <div class="color-selection">
+                    <h3>Select Color</h3>
+                    <div class="color-options">
+                        <button class="color-btn" style="background-color: #000;"></button>
+                        <button class="color-btn" style="background-color: #fff; border: 1px solid #ddd;"></button>
+                        <button class="color-btn" style="background-color: #4169E1;"></button>
+                        <button class="color-btn" style="background-color: #DC143C;"></button>
+                        <button class="color-btn" style="background-color: #228B22;"></button>
+                    </div>
+                </div>
+
+                <!-- Quantity and Add to Cart -->
+                <div class="cart-section">
+                    <div class="quantity-selector">
+                        <label for="quantity">Quantity:</label>
+                        <div class="quantity-controls">
+                            <button class="qty-btn minus">-</button>
+                            <input type="number" id="quantity" value="1" min="1" max="100">
+                            <button class="qty-btn plus">+</button>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="add-to-cart-btn" id="add-to-cart">Add to Cart</button>
+                        <button class="buy-now-btn" id="buy-now">Buy Now</button>
+                    </div>
+                </div>
+
+                <!-- Additional Info -->
+                <div class="additional-info">
+                    <div class="info-item">
+                        <span class="info-icon">🚚</span>
+                        <div>
+                            <strong>Free Shipping</strong>
+                            <p>On orders over $100</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">↩️</span>
+                        <div>
+                            <strong>30-Day Returns</strong>
+                            <p>Easy returns policy</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">🛡️</span>
+                        <div>
+                            <strong>Authenticity Guaranteed</strong>
+                            <p>100% vintage verified</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <div class="related-products">
+            <h2>You May Also Like</h2>
+            <div class="related-grid" id="related-products">
+                <!-- Related products will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section categories">
+                <h3>SHOP CATEGORIES</h3>
+                <ul>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Kids</a></li>
+                    <li><a href="#">Accessories</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section contact">
+                <h3>CONTACT US</h3>
+                <div class="contact-info">
+                    <p>Email: support@vintagevillage.com</p>
+                    <p>Phone: +1 (800) 123-4567</p>
+                </div>
+            </div>
+            
+            <div class="footer-section newsletter">
+                <h3>STAY UPDATED</h3>
+                <p>Subscribe to our newsletter for latest trends and deals</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <div class="copyright">
+                    <p>© 2025 Vintage Village. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="../contact-us/contact.html">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="product.js"></script> <!-- In same folder -->
+</body>
+</html>

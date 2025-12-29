@@ -525,3 +525,18 @@ nav ul li:last-child {
         justify-content: center;
     }
 }
+
+/* Simple hover effect for clickable product cards */
+.product-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Prevent button hover from affecting card hover */
+.product-buttons button:hover {
+    transform: none;
+}
