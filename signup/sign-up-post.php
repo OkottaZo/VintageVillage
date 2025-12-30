@@ -12,7 +12,7 @@ $email = sanitize_input($_POST['email']);
 $password = trim($_POST['password']);
 if(!empty($password) && !empty($username) && !empty($email) ){
     if(strlen($password)>=6){
-        header('Location: ../main/main.html');
+        header('Location: ../main/main.php');
         exit();
     }else {
          // --- THIS IS THE UPDATED PART ---

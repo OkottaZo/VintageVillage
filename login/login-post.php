@@ -11,7 +11,7 @@ $username = sanitize_input($_POST['username']);
 
 if(!empty($password) && !empty($username)){
     if(strlen($password) >= 6) {
-        header('Location: ../main/main.html');
+        header('Location: ../main/main.php');
         exit(); // Always good practice to exit after a header redirect
     } else {
         // --- THIS IS THE UPDATED PART ---

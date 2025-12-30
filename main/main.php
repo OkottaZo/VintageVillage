@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Prevent the browser from caching this page
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
+// Check if the user is logged in for the JS bridge
+$currentUser = isset($_SESSION['username']) ? $_SESSION['username'] : null;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,35 +17,48 @@
     <title>Vintage Village</title>
     <link rel="icon" href="../Images/Favicon2023-728352333 (1).jpg">
     <link rel="stylesheet" href="main.css">
+    <script>
+    // This creates the variable that your external JS file will use
+    window.loggedInUser = <?php echo json_encode($currentUser); ?>;
+    
+    // Safety check: If the user just logged out, ensure the guest buttons show immediately
+    if (window.loggedInUser === null) {
+        console.log("Status: Guest");
+    } else {
+        console.log("Status: Logged in as " + window.loggedInUser);
+    }
+</script>
 </head>
 <body>
-    <nav>
-        <div>
-            <a href="../main/main.html">
-                <img src="../Images/Favicon2023-728352333 (1).jpg" alt="LbaL.com">
-            </a>
-            <ul>
-                <li>
-                    <a href="">Women</a>
-                </li>
-                <li>
-                    <a href="">Men</a>
-                </li>
-                <li>
-                    <a href="">Kids</a>
-                </li>
-                <li>
-                    <a href="">Accessories</a>
-                </li>
-                <li>
-                    <a class="usernav" id="loginbutt" href="../login/login.html">Login</a>
-                </li>
-                <li>
-                    <a class="usernav" href="../signup/sign-up.html">Sign-up</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+   <nav>
+    <div>
+        <a href="../main/main.php">
+            <img src="../Images/Favicon2023-728352333 (1).jpg" alt="LbaL.com">
+        </a>
+        <ul>
+            <li><a href="">Women</a></li>
+            <li><a href="">Men</a></li>
+            <li><a href="">Kids</a></li>
+            <li><a href="">Accessories</a></li>
+
+            <li id="login-item">
+                <a class="usernav" id="loginbutt" href="../login/login.html">Login</a>
+            </li>
+            <li id="signup-item">
+                <a class="usernav" href="../signup/sign-up.html">Sign-up</a>
+            </li>
+
+            <li id="profile-item" style="display: none;">
+                <a class="usernav" href="../profile/profile.php">
+                    <span id="username-display" style="color: #d4af37; font-weight: bold;"></span>
+                </a>
+            </li>
+            <li id="logout-item" style="display: none;">
+                <a class="usernav" href="../logout/logout.php">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
     <div class="hero-banner">
         <img src="../Images/Gemini_Generated_Image_5ox0ky5ox0ky5ox0.png" alt="Vintage Village Storefront">
         <a href="#shop-start" class="explore-btn">Explore Collection</a>
@@ -165,5 +189,9 @@
             </div>
         </div>
     </footer>
+    <script> 
+        const loggedinUser = <?php echo json_encode($_SESSION['username']); ?>;
+    </script>
+    <script src="acc-handling.js"></script>
 </body>
 </html>
