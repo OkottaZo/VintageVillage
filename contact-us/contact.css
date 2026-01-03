@@ -1,16 +1,18 @@
-rf/* Global Reset */
+/* Global Reset */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f4;
     color: #333;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 /* Navbar */
 nav {
     background-color: #000;
     padding: 0 20px;
+    transition: background-color 0.3s;
 }
 
 nav > div {
@@ -18,11 +20,14 @@ nav > div {
     justify-content: space-between;
     align-items: center;
     height: 70px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 nav img {
     height: 40px;
     width: auto;
+    cursor: pointer;
 }
 
 nav ul {
@@ -57,11 +62,21 @@ nav ul li:last-child {
     color: #e38b3d;
 }
 
+#cart-count {
+    background-color: #ff4444;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    margin-left: 5px;
+}
+
 /* Contact Page */
 .contact-container {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 40px auto;
     padding: 0 20px;
+    min-height: calc(100vh - 400px);
 }
 
 .contact-header {
@@ -73,16 +88,20 @@ nav ul li:last-child {
     font-size: 2.5rem;
     margin-bottom: 10px;
     color: #222;
+    transition: color 0.3s;
 }
 
 .contact-header p {
     color: #666;
+    font-size: 1.1rem;
+    transition: color 0.3s;
 }
 
 .contact-content {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
+    margin-bottom: 60px;
 }
 
 .contact-form-container, 
@@ -91,8 +110,9 @@ nav ul li:last-child {
     min-width: 300px;
     background-color: white;
     border-radius: 8px;
-    padding: 25px;
+    padding: 30px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s;
 }
 
 .contact-form-container h2,
@@ -102,6 +122,7 @@ nav ul li:last-child {
     color: #222;
     padding-bottom: 10px;
     border-bottom: 2px solid #f0f0f0;
+    transition: all 0.3s;
 }
 
 /* Form */
@@ -114,6 +135,7 @@ nav ul li:last-child {
     margin-bottom: 8px;
     font-weight: 600;
     color: #444;
+    transition: color 0.3s;
 }
 
 .form-group input,
@@ -125,12 +147,19 @@ nav ul li:last-child {
     font-size: 1rem;
     font-family: inherit;
     box-sizing: border-box;
+    transition: all 0.3s;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: #e67e22;
+    box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
 }
 
 .submit-btn {
@@ -143,10 +172,15 @@ nav ul li:last-child {
     cursor: pointer;
     width: 100%;
     transition: all 0.3s ease;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .submit-btn:hover {
     background-color: #e67e22;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(230, 126, 34, 0.3);
 }
 
 /* Contact Info */
@@ -156,17 +190,31 @@ nav ul li:last-child {
 
 .contact-method {
     margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.contact-method:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 .contact-method h3 {
     font-size: 1.2rem;
     margin-bottom: 8px;
     color: #222;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .contact-method p {
     color: #555;
     margin: 0;
+    line-height: 1.6;
+    transition: color 0.3s;
 }
 
 /* Responsive */
@@ -183,6 +231,30 @@ nav ul li:last-child {
         font-size: 0.9rem;
         padding: 6px 8px;
     }
+    
+    .contact-container {
+        margin: 20px auto;
+    }
+    
+    .contact-form-container,
+    .contact-info-container {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    nav > div {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 15px 0;
+    }
+    
+    nav ul {
+        margin-top: 15px;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 }
 
 /* Footer Styles */
@@ -190,6 +262,7 @@ nav ul li:last-child {
     background-color: #000;
     color: white;
     margin-top: 60px;
+    transition: background-color 0.3s;
 }
 
 .footer-content {
@@ -283,6 +356,7 @@ nav ul li:last-child {
     background-color: #111;
     padding: 25px 20px;
     border-top: 1px solid #333;
+    transition: background-color 0.3s;
 }
 
 .footer-bottom-content {
@@ -340,4 +414,176 @@ nav ul li:last-child {
     .footer-links {
         justify-content: center;
     }
+}
+/* ============================================
+   DARK MODE STYLES - COMPLETE
+   ============================================ */
+
+/* Dark mode - Body and HTML */
+html.dark-mode,
+body.dark-mode {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+}
+
+/* Dark mode - Navigation */
+.dark-mode nav {
+    background-color: #1a1a1a !important;
+    border-bottom: 1px solid #333 !important;
+}
+
+.dark-mode nav a {
+    color: #e0e0e0 !important;
+}
+
+.dark-mode nav a:hover {
+    color: #e67e22 !important;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Dark mode - Contact Container */
+.dark-mode .contact-container {
+    background-color: transparent !important;
+}
+
+.dark-mode .contact-header h1 {
+    color: #ffffff !important;
+}
+
+.dark-mode .contact-header p {
+    color: #aaa !important;
+}
+
+/* Dark mode - Form Container */
+.dark-mode .contact-form-container,
+.dark-mode .contact-info-container {
+    background-color: #1a1a1a !important;
+    border: 1px solid #333 !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2) !important;
+}
+
+.dark-mode .contact-form-container h2,
+.dark-mode .contact-info-container h2 {
+    color: #ffffff !important;
+    border-bottom-color: #333 !important;
+}
+
+/* Dark mode - Form Elements */
+.dark-mode .form-group label {
+    color: #e0e0e0 !important;
+}
+
+.dark-mode .form-group input,
+.dark-mode .form-group textarea {
+    background-color: #2a2a2a !important;
+    border-color: #444 !important;
+    color: #e0e0e0 !important;
+}
+
+.dark-mode .form-group input::placeholder,
+.dark-mode .form-group textarea::placeholder {
+    color: #888 !important;
+}
+
+.dark-mode .form-group input:focus,
+.dark-mode .form-group textarea:focus {
+    border-color: #e67e22 !important;
+    box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.2) !important;
+}
+
+.dark-mode .submit-btn {
+    background-color: #e67e22 !important;
+    color: white !important;
+}
+
+.dark-mode .submit-btn:hover {
+    background-color: #d35400 !important;
+}
+
+/* Dark mode - Contact Info */
+.dark-mode .contact-method {
+    border-bottom-color: #333 !important;
+}
+
+.dark-mode .contact-method h3 {
+    color: #ffffff !important;
+}
+
+.dark-mode .contact-method p {
+    color: #ccc !important;
+}
+
+/* Dark mode - Footer */
+.dark-mode .main-footer {
+    background-color: #1a1a1a !important;
+    border-top: 1px solid #333 !important;
+}
+
+.dark-mode .footer-bottom {
+    background-color: #121212 !important;
+}
+
+.dark-mode .footer-section h3 {
+    color: #ffffff !important;
+}
+
+.dark-mode .footer-section ul li a,
+.dark-mode .contact-info p,
+.dark-mode .newsletter p {
+    color: #aaa !important;
+}
+
+.dark-mode .newsletter-form input {
+    background-color: #2a2a2a !important;
+    color: #e0e0e0 !important;
+    border: 1px solid #333 !important;
+}
+
+.dark-mode .newsletter-form input:focus {
+    border-color: #e67e22 !important;
+    box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.3) !important;
+}
+
+.dark-mode .newsletter-form button {
+    background-color: #e67e22 !important;
+}
+
+.dark-mode .newsletter-form button:hover {
+    background-color: #d35400 !important;
+}
+
+.dark-mode .copyright p,
+.dark-mode .footer-links a {
+    color: #888 !important;
+}
+
+/* Dark mode - Input focus states */
+.dark-mode input:focus,
+.dark-mode button:focus,
+.dark-mode textarea:focus {
+    outline: 2px solid #e67e22 !important;
+    outline-offset: 2px;
+}
+
+/* Dark mode - Links */
+.dark-mode a {
+    color: #e67e22 !important;
+}
+
+.dark-mode a:hover {
+    color: #ff9c4a !important;
+}
+
+/* Dark mode - Headings */
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3 {
+    color: #ffffff !important;
+}
+
+/* Dark mode - General text */
+.dark-mode p,
+.dark-mode span,
+.dark-mode li {
+    color: #e0e0e0 !important;
 }

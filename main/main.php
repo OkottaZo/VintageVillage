@@ -47,6 +47,11 @@ $currentUser = isset($_SESSION['username']) ? $_SESSION['username'] : null;
             <li id="signup-item">
                 <a class="usernav" href="../signup/sign-up.html">Sign-up</a>
             </li>
+            
+            <!-- ADDED CART LINK -->
+            <li>
+                <a class="usernav" href="../shop/cart.html">Cart (<span id="cart-count">0</span>)</a>
+            </li>
 
             <li id="profile-item" style="display: none;">
                 <a class="usernav" href="../profile/profile.php">
@@ -57,6 +62,23 @@ $currentUser = isset($_SESSION['username']) ? $_SESSION['username'] : null;
                 <a class="usernav" href="../logout/logout.php">Logout</a>
             </li>
         </ul>
+        
+        <!-- ADDED DARK MODE TOGGLE BUTTON -->
+        <button class="dark-mode-toggle" id="dark-mode-toggle" style="
+            background: transparent;
+            border: 2px solid #fff;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        ">🌙</button>
     </div>
 </nav>
     <div class="hero-banner">
@@ -193,5 +215,72 @@ $currentUser = isset($_SESSION['username']) ? $_SESSION['username'] : null;
         const loggedinUser = <?php echo json_encode($_SESSION['username']); ?>;
     </script>
     <script src="acc-handling.js"></script>
+    
+    <!-- ADDED DARK MODE AND CART SCRIPT -->
+    <script>
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Main page loading...');
+        
+        // 1. Setup dark mode
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        if (darkModeToggle) {
+            const isDarkMode = localStorage.getItem('vintageVillageDarkMode') === 'true';
+            
+            if (isDarkMode) {
+                document.documentElement.classList.add('dark-mode');
+                document.body.classList.add('dark-mode');
+                darkModeToggle.textContent = '☀️';
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                const html = document.documentElement;
+                const body = document.body;
+                const isDark = html.classList.contains('dark-mode');
+                
+                if (isDark) {
+                    // Switch to LIGHT mode
+                    html.classList.remove('dark-mode');
+                    body.classList.remove('dark-mode');
+                    this.textContent = '🌙';
+                    localStorage.setItem('vintageVillageDarkMode', 'false');
+                } else {
+                    // Switch to DARK mode
+                    html.classList.add('dark-mode');
+                    body.classList.add('dark-mode');
+                    this.textContent = '☀️';
+                    localStorage.setItem('vintageVillageDarkMode', 'true');
+                }
+            });
+        }
+        
+        // 2. Update cart count
+        function updateCartCount() {
+            try {
+                const cart = JSON.parse(localStorage.getItem('vintageVillageCart') || '[]');
+                const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+                
+                const cartCountElement = document.getElementById('cart-count');
+                if (cartCountElement) {
+                    cartCountElement.textContent = cartCount;
+                }
+            } catch (error) {
+                console.error('Error updating cart count:', error);
+            }
+        }
+        
+        // Initial cart count update
+        updateCartCount();
+        
+        // 3. Listen for cart updates from other pages
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'vintageVillageCart' || e.key === 'cartCountUpdate') {
+                updateCartCount();
+            }
+        });
+        
+        console.log('Main page initialized');
+    });
+    </script>
 </body>
 </html>

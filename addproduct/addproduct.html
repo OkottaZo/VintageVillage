@@ -3,36 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="addproduct.css"> <!-- Only your CSS file -->
+    <link rel="stylesheet" href="addproduct.css">
     <title>Add Product - Vintage Village</title>
 </head>
 <body>
     <nav>
         <div>
             <a href="../main/main.html">
-                <img src="../Images/Favicon2023-728352333 (1).jpg" alt="LbaL.com">
+                <img src="../Images/Favicon2023-728352333 (1).jpg" alt="Vintage Village">
             </a>
             <ul>
-                <li>
-                    <a href="">Women</a>
-                </li>
-                <li>
-                    <a href="">Men</a>
-                </li>
-                <li>
-                    <a href="">Kids</a>
-                </li>
-                <li>
-                    <a href="">Accessories</a>
-                </li>
-                <li>
-                    <a class="usernav" id="loginbutt" href="../login/login.html">Login</a>
-                </li>
-                <li>
-                    <a class="usernav" href="../signup/sign-up.html">Sign-up</a>
-                </li>
+                <li><a href="">Women</a></li>
+                <li><a href="">Men</a></li>
+                <li><a href="">Kids</a></li>
+                <li><a href="">Accessories</a></li>
+                <li><a class="usernav" id="loginbutt" href="../login/login.html">Login</a></li>
+                <li><a class="usernav" href="../signup/sign-up.html">Sign-up</a></li>
+                <!-- ADDED: Cart Link -->
+                <li><a class="usernav" href="../shop/cart.html">Cart (<span id="cart-count">0</span>)</a></li>
             </ul>
-            <!-- Return to Shop Button -->
+            
+            <!-- ADDED: Dark Mode Toggle Button -->
+            <button class="dark-mode-toggle" id="dark-mode-toggle" aria-label="Toggle dark mode">
+                🌙
+            </button>
+            
             <button class="add-product-btn" onclick="window.location.href='../shop/shop.html'">
                 Back to Shop
             </button>
@@ -105,6 +100,7 @@
                             <input type="number" id="quantity" name="quantity" min="0" placeholder="100" required>
                         </div>
                     </div>
+                </div>
 
                 <!-- Product Details Section -->
                 <div class="form-section">
@@ -266,6 +262,80 @@
             </div>
         </div>
     </footer>
-  <script src="../productmanager/productmanager.js"></script>
+    
+    <script src="../productmanager/productmanager.js"></script>
+    
+    <!-- ADD THIS INLINE SCRIPT - IT WILL WORK FOR SURE -->
+    <script>
+    // SIMPLE DARK MODE SCRIPT THAT WILL DEFINITELY WORK
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Dark mode script loading...');
+        
+        // 1. Get the toggle button
+        const toggleBtn = document.getElementById('dark-mode-toggle');
+        console.log('Toggle button found:', toggleBtn);
+        
+        if (!toggleBtn) {
+            console.error('Dark mode toggle button not found! Check HTML for id="dark-mode-toggle"');
+            return;
+        }
+        
+        // 2. Check current dark mode state
+        const isDarkMode = localStorage.getItem('vintageVillageDarkMode') === 'true';
+        console.log('Current dark mode state:', isDarkMode);
+        
+        // 3. Apply initial state
+        if (isDarkMode) {
+            document.documentElement.classList.add('dark-mode');
+            toggleBtn.textContent = '☀️';
+            toggleBtn.setAttribute('aria-label', 'Switch to light mode');
+        }
+        
+        // 4. Add click event listener
+        toggleBtn.addEventListener('click', function() {
+            console.log('Dark mode toggle clicked!');
+            
+            const html = document.documentElement;
+            const isCurrentlyDark = html.classList.contains('dark-mode');
+            
+            if (isCurrentlyDark) {
+                // Switch to LIGHT mode
+                html.classList.remove('dark-mode');
+                this.textContent = '🌙';
+                this.setAttribute('aria-label', 'Switch to dark mode');
+                localStorage.setItem('vintageVillageDarkMode', 'false');
+                console.log('Switched to LIGHT mode');
+            } else {
+                // Switch to DARK mode
+                html.classList.add('dark-mode');
+                this.textContent = '☀️';
+                this.setAttribute('aria-label', 'Switch to light mode');
+                localStorage.setItem('vintageVillageDarkMode', 'true');
+                console.log('Switched to DARK mode');
+            }
+        });
+        
+        console.log('Dark mode script loaded successfully!');
+        
+        // 5. Update cart count
+        function updateCartCount() {
+            try {
+                const cart = JSON.parse(localStorage.getItem('vintageVillageCart') || '[]');
+                const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+                
+                const cartCountElement = document.getElementById('cart-count');
+                if (cartCountElement) {
+                    cartCountElement.textContent = cartCount;
+                }
+                console.log('Cart count updated:', cartCount);
+            } catch (error) {
+                console.error('Error updating cart count:', error);
+            }
+        }
+        
+        // Initial cart count update
+        updateCartCount();
+    });
+    </script>
 </body>
 </html>

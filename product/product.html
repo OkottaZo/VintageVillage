@@ -14,16 +14,16 @@
             </a>
             <ul>
                 <li>
-                    <a href="">Women</a>
+                    <a href="../shop/shop.html">Women</a>
                 </li>
                 <li>
-                    <a href="">Men</a>
+                    <a href="../shop/shop.html">Men</a>
                 </li>
                 <li>
-                    <a href="">Kids</a>
+                    <a href="../shop/shop.html">Kids</a>
                 </li>
                 <li>
-                    <a href="">Accessories</a>
+                    <a href="../shop/shop.html">Accessories</a>
                 </li>
                 <li>
                     <a class="usernav" id="loginbutt" href="../login/login.html">Login</a>
@@ -31,7 +31,30 @@
                 <li>
                     <a class="usernav" href="../signup/sign-up.html">Sign-up</a>
                 </li>
+                
+                <!-- ADDED CART LINK -->
+                <li>
+                    <a class="usernav" href="../shop/cart.html">Cart (<span id="cart-count">0</span>)</a>
+                </li>
             </ul>
+            
+            <!-- ADDED DARK MODE TOGGLE BUTTON -->
+            <button class="dark-mode-toggle" id="dark-mode-toggle" style="
+                background: transparent;
+                border: 2px solid #fff;
+                color: white;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+                font-size: 1.2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: 10px;
+                transition: all 0.3s ease;
+            ">🌙</button>
+            
             <!-- Back to Shop Button -->
             <button class="add-product-btn" onclick="window.location.href='../shop/shop.html'">
                 Back to Shop
@@ -205,10 +228,10 @@
             <div class="footer-section categories">
                 <h3>SHOP CATEGORIES</h3>
                 <ul>
-                    <li><a href="#">Women</a></li>
-                    <li><a href="#">Men</a></li>
-                    <li><a href="#">Kids</a></li>
-                    <li><a href="#">Accessories</a></li>
+                    <li><a href="../shop/shop.html">Women</a></li>
+                    <li><a href="../shop/shop.html">Men</a></li>
+                    <li><a href="../shop/shop.html">Kids</a></li>
+                    <li><a href="../shop/shop.html">Accessories</a></li>
                 </ul>
             </div>
             
@@ -246,5 +269,72 @@
 
     <script src="product.js"></script> <!-- In same folder -->
     <script src="productcomment.js"></script>
+    
+    <!-- ADDED DARK MODE AND CART SCRIPT -->
+    <script>
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Product page loading...');
+        
+        // 1. Setup dark mode
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        if (darkModeToggle) {
+            const isDarkMode = localStorage.getItem('vintageVillageDarkMode') === 'true';
+            
+            if (isDarkMode) {
+                document.documentElement.classList.add('dark-mode');
+                document.body.classList.add('dark-mode');
+                darkModeToggle.textContent = '☀️';
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                const html = document.documentElement;
+                const body = document.body;
+                const isDark = html.classList.contains('dark-mode');
+                
+                if (isDark) {
+                    // Switch to LIGHT mode
+                    html.classList.remove('dark-mode');
+                    body.classList.remove('dark-mode');
+                    this.textContent = '🌙';
+                    localStorage.setItem('vintageVillageDarkMode', 'false');
+                } else {
+                    // Switch to DARK mode
+                    html.classList.add('dark-mode');
+                    body.classList.add('dark-mode');
+                    this.textContent = '☀️';
+                    localStorage.setItem('vintageVillageDarkMode', 'true');
+                }
+            });
+        }
+        
+        // 2. Update cart count
+        function updateCartCount() {
+            try {
+                const cart = JSON.parse(localStorage.getItem('vintageVillageCart') || '[]');
+                const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+                
+                const cartCountElement = document.getElementById('cart-count');
+                if (cartCountElement) {
+                    cartCountElement.textContent = cartCount;
+                }
+            } catch (error) {
+                console.error('Error updating cart count:', error);
+            }
+        }
+        
+        // Initial cart count update
+        updateCartCount();
+        
+        // 3. Listen for cart updates from other pages
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'vintageVillageCart' || e.key === 'cartCountUpdate') {
+                updateCartCount();
+            }
+        });
+        
+        console.log('Product page initialized');
+    });
+    </script>
 </body>
 </html>
