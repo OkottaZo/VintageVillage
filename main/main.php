@@ -139,15 +139,47 @@ $currentRole = $_SESSION['role'] ?? 'user';
         <div class="shop-box accessories" onclick="window.location.href='../shop/shop.php'"><span>SHOP ACCESSORIES</span></div>
     </div>
 
-    <footer class="main-footer">
+  <footer class="main-footer">
         <div class="footer-content">
+            <div class="footer-section categories">
+                <h3>SHOP CATEGORIES</h3>
+                <ul>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Kids</a></li>
+                    <li><a href="#">Accessories</a></li>
+                </ul>
+            </div>
+            
             <div class="footer-section contact">
                 <h3>CONTACT US</h3>
-                <p>Email: support@vintagevillage.com</p>
+                <div class="contact-info">
+                    <p>Email: support@vintagevillage.com</p>
+                    <p>Phone: +1 (800) 123-4567</p>
+                </div>
+            </div>
+            
+            <div class="footer-section newsletter">
+                <h3>STAY UPDATED</h3>
+                <p>Subscribe to our newsletter for latest trends and deals</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
             </div>
         </div>
+        
         <div class="footer-bottom">
-            <p>© 2026 Vintage Village. All rights reserved.</p>
+            <div class="footer-bottom-content">
+                <div class="copyright">
+                    <p>© 2025 Vintage Village. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="../contact-us/contact.html">Contact</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 
