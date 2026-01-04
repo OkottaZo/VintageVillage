@@ -1,3 +1,9 @@
+<?php
+session_start();
+// Check if the user is logged in
+$currentUser = isset($_SESSION['username']) ? $_SESSION['username'] : null;
+$currentEmail = isset($_SESSION['email']) ? $_SESSION['email'] : null;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,42 +11,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="shop.css">
     <title>Vintage Village Shop</title>
+    <script>
+    // If PHP sees a session, make sure LocalStorage matches it
+    const phpUser = <?php echo json_encode($currentUser); ?>;
+    const phpEmail = <?php echo json_encode($currentEmail); ?>;
+
+    if (phpUser) {
+        localStorage.setItem("username", phpUser);
+        if (phpEmail === "admin@website.com") {
+            localStorage.setItem("userRole", "admin");
+        } else {
+            localStorage.setItem("userRole", "user");
+        }
+    }
+</script>
 </head>
 <body>
-    <nav>
-        <div>
-            <a href="../main/main.php">
-                <img src="../Images/Favicon2023-728352333 (1).jpg" alt="Vintage Village">
-            </a>
-            <ul>
-                <li>
-                    <a href="">Women</a>
-                </li>
-                <li>
-                    <a href="">Men</a>
-                </li>
-                <li>
-                    <a href="">Kids</a>
-                </li>
-                <li>
-                    <a href="">Accessories</a>
-                </li>
-                <li>
-                    <a class="usernav" id="loginbutt" href="../login/login.php">Login</a>
-                </li>
-                <li>
-                    <a class="usernav" href="../signup/sign-up.php">Sign-up</a>
-                </li>
-                <li>
-                    <a class="usernav" href="../cart/cart.html">Cart (<span id="cart-count">0</span>)</a>
-                </li>
-            </ul>
-            <!-- Red Add Product Button -->
-            <button class="add-product-btn" onclick="window.location.href='../addproduct/addproduct.html'">
-                Add Product
-            </button>
-        </div>
-    </nav>
+   <nav>
+    <div>
+        <a href="../main/main.php">
+            <img src="../Images/Favicon2023-728352333 (1).jpg" alt="Vintage Village">
+        </a>
+        <ul>
+            <li><a href="">Women</a></li>
+            <li><a href="">Men</a></li>
+            <li><a href="">Kids</a></li>
+            <li><a href="">Accessories</a></li>
+
+            <li id="admin-item" style="display: none;">
+                <a class="usernav" href="../admin/dashboard.php" style="color: #ff4d4d; font-weight: bold;">ADMIN PANEL</a>
+            </li>
+
+            <li id="login-item">
+                <a class="usernav" id="loginbutt" href="../login/login.html">Login</a>
+            </li>
+            <li id="signup-item">
+                <a class="usernav" href="../signup/sign-up.html">Sign-up</a>
+            </li>
+
+            <li id="profile-item" style="display: none;">
+                <a class="usernav" href="../profile/profile.php">
+                    <span id="username-display" style="color: #d4af37; font-weight: bold;"></span>
+                </a>
+            </li>
+            <li id="logout-item" style="display: none;">
+                <a class="usernav" href="../logout/logout.php" onclick="localStorage.clear();">Logout</a>
+            </li>
+        </ul>
+
+        <button id="add-product-btn" class="add-product-btn" onclick="window.location.href='../addproduct/addproduct.html'">
+            Add Product
+        </button>
+    </div>
+</nav>
 
     <!-- Main Container -->
     <div class="container">
@@ -237,5 +260,6 @@
         });
     </script>
     <script src="../productmanager/productmanager.js"></script>
+<script src="acc-handling.js"></script>
 </body>
 </html>

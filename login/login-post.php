@@ -1,47 +1,29 @@
 <?php
-function sanitize_input($input){
-    $input = trim($input);
-    $input = stripslashes($input);
-    $input = htmlspecialchars($input);
-    return $input;
-}
+session_start();
 
-$password = trim($_POST['password']);
-$username = sanitize_input($_POST['username']);
+// Get your form data
+$user = $_POST['username'];
+$pass = $_POST['password'];
 
-if(!empty($password) && !empty($username)){
-    if(strlen($password) >= 6) {
-        header('Location: ../main/main.php');
-        exit(); // Always good practice to exit after a header redirect
-    } else {
-        // --- THIS IS THE UPDATED PART ---
-        echo '
-        <div style="
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #ffe6e6; 
-            color: #d8000c;
-            border: 1px solid #cc0000;
-            padding: 20px 40px;
-            font-family: sans-serif;
-            text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        ">
-            <h3 style="margin-top: 0;">Error</h3>
-            <p>Password is too short</p>
-            
-            <button onclick="history.back()" style="
-                padding: 8px 16px; 
-                cursor: pointer;
-                background: #fff;
-                border: 1px solid #999;
-                border-radius: 4px;
-            ">Go Back</button>
-        </div>';
-        // --------------------------------
-    }
+if ($user === "admin@website.com" && $pass === "admin1234") {
+    $_SESSION['username'] = "Admin";
+    $_SESSION['email'] = "admin@website.com";
+    
+    // This JS forces the browser to remember the admin BEFORE redirecting
+    echo "<script>
+        localStorage.setItem('username', 'Admin');
+        localStorage.setItem('userRole', 'admin');
+        window.location.href = '../main/main.php';
+    </script>";
+} else {
+    // Regular user logic
+    $_SESSION['username'] = $user;
+    $_SESSION['email'] = $user;
+    
+    echo "<script>
+        localStorage.setItem('username', '$user');
+        localStorage.setItem('userRole', 'user');
+        window.location.href = '../main/main.php';
+    </script>";
 }
 ?>

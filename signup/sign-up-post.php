@@ -1,49 +1,57 @@
-
 <?php
-require_once('sign-up.html');
+session_start();
+
 function sanitize_input($input){
     $input = trim($input);
     $input = stripslashes($input);
     $input = htmlspecialchars($input);
     return $input;
 }
-$username = sanitize_input($_POST['username']);
-$email = sanitize_input($_POST['email']);
+
+$userEmail = sanitize_input($_POST['email']);
+$userName = sanitize_input($_POST['username']); 
 $password = trim($_POST['password']);
-if(!empty($password) && !empty($username) && !empty($email) ){
-    if(strlen($password)>=6){
-        header('Location: ../main/main.php');
-        exit();
-    }else {
-         // --- THIS IS THE UPDATED PART ---
-        echo '
-        <div style="
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #ffe6e6; 
-            color: #d8000c;
-            border: 1px solid #cc0000;
-            padding: 20px 40px;
-            font-family: sans-serif;
-            text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        ">
-            <h3 style="margin-top: 0;">Error</h3>
-            <p>Password is too short</p>
-            
-            <button onclick="history.back()" style="
-                padding: 8px 16px; 
-                cursor: pointer;
-                background: #fff;
-                border: 1px solid #999;
-                border-radius: 4px;
-            ">Go Back</button>
-        </div>';
-        // ----------------------
+
+if(!empty($userEmail) && !empty($userName) && !empty($password)){
+    
+    if(strlen($password) >= 6) {
+        // 1. Set PHP Sessions (For server-side security)
+        $_SESSION['username'] = $userName; 
+        $_SESSION['email'] = $userEmail;
+        $_SESSION['role'] = "user";
+
+        // 2. The JavaScript "Bridge"
+        // We use this because we NEED to save to LocalStorage before leaving
+        echo "
+        <script>
+            // A. Get existing users list
+            let users = JSON.parse(localStorage.getItem('villageUsers')) || [];
+
+            // B. Add this new user to the array
+            users.push({
+                name: '$userName',
+                email: '$userEmail',
+                role: 'user'
+            });
+
+            // C. Save back to LocalStorage (This makes them appear in Admin Panel)
+            localStorage.setItem('villageUsers', JSON.stringify(users));
+
+            // D. Set current login status for the Navbar
+            localStorage.setItem('username', '$userName');
+            localStorage.setItem('userRole', 'user');
+
+            // E. Redirect via JavaScript (DO NOT USE PHP HEADER HERE)
+            window.location.href = '../main/main.php';
+        </script>";
+        exit(); // Stop PHP from doing anything else
+
+    } else {
+        echo '<div style="text-align:center; margin-top:50px; font-family:sans-serif;">
+                <h2 style="color:red;">Password too short!</h2>
+                <button onclick="history.back()">Try Again</button>
+              </div>';
     }
 }
-
+// DELETE THE EXTRA LINES THAT WERE HERE BEFORE
 ?>

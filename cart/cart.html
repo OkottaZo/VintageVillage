@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cart.css">
+    <title>Shopping Cart - Vintage Village</title>
+    <!-- Add this style for dark mode -->
+    <style>
+        /* Dark mode styles will be applied by JavaScript */
+        .dark-mode {
+            background-color: #121212 !important;
+            color: #e0e0e0 !important;
+        }
+        
+        .dark-mode nav {
+            background-color: #1a1a1a !important;
+        }
+        
+        .dark-mode nav a {
+            color: #e0e0e0 !important;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div>
+            <a href="../main/main.php">
+                <img src="../Images/Favicon2023-728352333 (1).jpg" alt="Vintage Village">
+            </a>
+            <ul>
+                <li><a href="">Women</a></li>
+                <li><a href="">Men</a></li>
+                <li><a href="">Kids</a></li>
+                <li><a href="">Accessories</a></li>
+                <li><a class="usernav" id="loginbutt" href="../login/login.html">Login</a></li>
+                <li><a class="usernav" href="../signup/sign-up.html">Sign-up</a></li>
+                <li><a class="usernav" href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+            </ul>
+            
+            
+            <button class="add-product-btn" onclick="window.location.href='../shop/shop.html'">
+                Continue Shopping
+            </button>
+        </div>
+    </nav>
+
+    <div class="cart-container">
+        <h1>Your Shopping Cart</h1>
+        
+        <div class="cart-content">
+            <!-- Cart Items Section -->
+            <div class="cart-items-section">
+                <div class="cart-items" id="cart-items">
+                    <!-- Cart items will be loaded here dynamically -->
+                    <div class="empty-cart">
+                        <p>Your cart is empty</p>
+                        <button onclick="window.location.href='../shop/shop.html'">Start Shopping</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Order Summary Section -->
+            <div class="order-summary">
+                <h2>Order Summary</h2>
+                <div class="summary-details">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span id="shipping">$0.00</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="total">$0.00</span>
+                    </div>
+                </div>
+                <button class="checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+                <button class="empty-cart-btn" id="empty-cart-btn" style="
+                    width: 100%;
+                    padding: 10px;
+                    background-color: transparent;
+                    color: #ff4444;
+                    border: 1px solid #ff4444;
+                    border-radius: 4px;
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    margin-top: 10px;
+                ">Empty Cart</button>
+                <p class="free-shipping">Free shipping on orders over $100!</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section categories">
+                <h3>SHOP CATEGORIES</h3>
+                <ul>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Kids</a></li>
+                    <li><a href="#">Accessories</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section contact">
+                <h3>CONTACT US</h3>
+                <div class="contact-info">
+                    <p>Email: support@vintagevillage.com</p>
+                    <p>Phone: +1 (800) 123-4567</p>
+                </div>
+            </div>
+            
+            <div class="footer-section newsletter">
+                <h3>STAY UPDATED</h3>
+                <p>Subscribe to our newsletter for latest trends and deals</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <div class="copyright">
+                    <p>© 2025 Vintage Village. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="../contact-us/contact.html">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SIMPLE CART JS -->
+    <script>
+    // SIMPLE CART FUNCTIONALITY
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Cart page loading...');
+        
+        // 1. Load cart items
+        loadCartItems();
+        
+        // 2. Setup checkout button
+        document.getElementById('checkout-btn').addEventListener('click', function() {
+            const cart = JSON.parse(localStorage.getItem('vintageVillageCart') || '[]');
+            
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            let subtotal = 0;
+            cart.forEach(item => {
+                subtotal += item.price * item.quantity;
+            });
+            
+            const shipping = subtotal < 100 ? 10 : 0;
+            const total = subtotal + shipping;
+            
+            if (confirm(`Proceed to checkout?\n\nSubtotal: $${subtotal.toFixed(2)}\nShipping: ${shipping === 0 ? 'FREE' : '$' + shipping.toFixed(2)}\nTotal: $${total.toFixed(2)}`)) {
+                alert('Thank you for your purchase!');
+                localStorage.removeItem('vintageVillageCart');
+                loadCartItems();
+                updateCartCountOnAllPages();
+            }
+        });
+        
+        // 3. Setup empty cart button
+        document.getElementById('empty-cart-btn').addEventListener('click', function() {
+            if (confirm('Empty your entire cart?')) {
+                localStorage.removeItem('vintageVillageCart');
+                loadCartItems();
+                updateCartCountOnAllPages();
+                alert('Cart emptied!');
+            }
+        });
+        
+        // 4. Setup dark mode toggle
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const isDarkMode = localStorage.getItem('vintageVillageDarkMode') === 'true';
+        
+        if (isDarkMode) {
+            document.documentElement.classList.add('dark-mode');
+            darkModeToggle.textContent = '☀️';
+        }
+        
+        darkModeToggle.addEventListener('click', function() {
+            const html = document.documentElement;
+            const isDark = html.classList.contains('dark-mode');
+            
+            if (isDark) {
+                html.classList.remove('dark-mode');
+                this.textContent = '🌙';
+                localStorage.setItem('vintageVillageDarkMode', 'false');
+            } else {
+                html.classList.add('dark-mode');
+                this.textContent = '☀️';
+                localStorage.setItem('vintageVillageDarkMode', 'true');
+            }
+        });
+        
+        // Update cart count
+        updateCartCountOnAllPages();
+    });
+    
+    function loadCartItems() {
+        const cart = JSON.parse(localStorage.getItem('vintageVillageCart') || '[]');
+        const cartItemsContainer = document.getElementById('cart-items');
+        
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = `
+                <div class="empty-cart">
+                    <p>Your cart is empty</p>
+                    <button onclick="window.location.href='../shop/shop.html'">Start Shopping</button>
+                </div>
+            `;
+            updateOrderSummary([]);
+            return;
+        }
+        
+        cartItemsContainer.innerHTML = '';
+        
+        cart.forEach((item, index) => {
+            const cartItem = document.createElement('div');
+            cartItem.className = 'cart-item';
+            cartItem.innerHTML = `
+                <div class="cart-item-image">
+                    <img src="${item.image || '../Images/Guns n Roses shirt.png'}" alt="${item.name}">
+                </div>
+                <div class="cart-item-details">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+                    <div class="cart-item-options">
+                        <span>Size: ${item.size || 'M'}</span>
+                        <span>Color: ${item.color || 'Black'}</span>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <div class="quantity-controls">
+                            <button class="qty-btn minus" data-index="${index}">-</button>
+                            <input type="number" class="cart-quantity" value="${item.quantity}" min="1" max="100">
+                            <button class="qty-btn plus" data-index="${index}">+</button>
+                        </div>
+                        <button class="remove-item" data-index="${index}">Remove</button>
+                    </div>
+                </div>
+            `;
+            
+            cartItemsContainer.appendChild(cartItem);
+        });
+        
+        // Add event listeners for quantity controls
+        document.querySelectorAll('.qty-btn.minus').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const index = parseInt(this.dataset.index);
+                updateQuantity(index, -1);
+            });
+        });
+        
+        document.querySelectorAll('.qty-btn.plus').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const index = parseInt(this.dataset.index);
+                updateQuantity(index, 1);
+            });
+        });
+        
+        document.querySelectorAll('.cart-quantity').forEach(input => {
+            input.addEventListener('change', function() {
+                const index = parseInt(this.closest('.cart-item').querySelector('.minus').dataset.index);
+                updateQuantity(index, 0, parseInt(this.value));
+            });
+        });
+        
+        document.querySelectorAll('.remove-item').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const index = parseInt(this.dataset.index);
+                removeItem(index);
+            });
+        });
+        
+        updateOrderSummary(cart);
+    }
+    
+    function updateQuantity(index, change, newQuantity = null) {
+        const cart = JSON.parse(localStorage.getItem('vintageVillageCart') || '[]');
+        
+        if (newQuantity !== null) {
+            cart[index].quantity = Math.max(1, Math.min(100, newQuantity));
+        } else {
+            cart[index].quantity = Math.max(1, Math.min(100, cart[index].quantity + change));
+        }
+        
+        localStorage.setItem('vintageVillageCart', JSON.stringify(cart));
+        loadCartItems();
+        updateCartCountOnAllPages();
+    }
+    
+    function removeItem(index) {
+        if (!confirm('Remove this item from cart?')) {
+            return;
+        }
+        
+        const cart = JSON.parse(localStorage.getItem('vintageVillageCart') || '[]');
+        cart.splice(index, 1);
+        localStorage.setItem('vintageVillageCart', JSON.stringify(cart));
+        loadCartItems();
+        updateCartCountOnAllPages();
+    }
+    
+    function updateOrderSummary(cart) {
+        let subtotal = 0;
+        
+        cart.forEach(item => {
+            subtotal += item.price * item.quantity;
+        });
+        
+        const shipping = subtotal === 0 ? 0 : (subtotal < 100 ? 10 : 0);
+        const total = subtotal + shipping;
+        
+        document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+        document.getElementById('shipping').textContent = shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`;
+        document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+    }
+    
+    function updateCartCountOnAllPages() {
+        const cart = JSON.parse(localStorage.getItem('vintageVillageCart') || '[]');
+        const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+        
+        // Update on this page
+        document.getElementById('cart-count').textContent = cartCount;
+        
+        // Update on other pages via localStorage event
+        localStorage.setItem('cartCountUpdate', Date.now().toString());
+    }
+    
+    // Listen for cart updates from other pages
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'vintageVillageCart' || e.key === 'cartCountUpdate') {
+            loadCartItems();
+            updateCartCountOnAllPages();
+        }
+    });
+    </script>
+</body>
+</html>
